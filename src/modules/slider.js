@@ -1,110 +1,79 @@
 const slider = () => {
     const slide = document.querySelectorAll('.item'),
+        slideTable = document.querySelectorAll('.table'),
         slider = document.querySelector('.top-slider');
 
-    console.log(slide);
-    console.log(slider);
+    // так тоже пробовал, сначала криво потом все хорошо. Подскажите как исправить
+        // slider.style.display = 'flex';
 
 
+    // посмотрите пожалуста этот фрагмент кода , тоже не работает как надо //
 
-    // let currentSlide = 0;
-    //  let interval;
+    const addClassSlider = () => {
+        slider.classList.add('slider_table');
 
-    // // const createDot = () => {
+        for (const item of slide) {
+            item.classList.add('item-slide');
+        }
+    };
 
-    // //     const li = document.createElement('li');
-    // //     li.classList.add('dot');
-    // //     this.dotsList.append(li);
-    // // };
+    addClassSlider();
 
-    // // for (let i = 0; i < slide.length; i++) {
-    // //     createDot();
-    // // }
+    const addStyleSlider = () => {
+        const style = document.createElement('style');
+        style.id = 'slider-style';
+        style.textContent = `
+        .slider_table {
+           display: flex !important;
+           transition: transform 0,5s !important;
+           will-change: transform !important;
+       }
+       .item-slide {
+           flex: 0 0 100% !important;
+           margin: auto 0 !important;
+       }
+       `;
+        document.head.appendChild(style);
+    };
 
-    // // const dot = document.querySelectorAll('.dot');
-    // // console.log(dot);
+    addStyleSlider();
 
+//                                              //
 
+    let currentSlide = 0;
 
+    const prevSlide = (elem, item, index) => {
+        elem[index].style.width = '0%';
+        elem[index].style.opacity = '0';
+        elem[index].style.visibility = 'hidden';
+        item[index].style.opacity = '0';
+        item[index].style.visibility = 'hidden';
+    };
 
+    const nextSlide = (elem, item, index) => {
+        elem[index].style.width = '100%';
+        elem[index].style.opacity = '1';
+        elem[index].style.visibility = 'visible';
+        item[index].style.opacity = '1';
+        item[index].style.visibility = 'visible';
+    };
 
-    // const prevSlide = (elem, index, strClass) => {
-    //     elem[index].classList.remove(strClass);
-    // };
+    const autoPlaySlide = () => {
 
-    // const nextSlide = (elem, index, strClass) => {
-    //     elem[index].classList.add(strClass);
-    // };
+        prevSlide(slide, slideTable, currentSlide);
 
-    // const autoPlaySlide = () => {
+        currentSlide++;
+        if (currentSlide >= slide.length) {
+            currentSlide = 0;
+        }
+        nextSlide(slide, slideTable, currentSlide);
+    };
 
-    //     prevSlide(slide, currentSlide, 'item-active');
+    const startSlide = (time = 3000) => {
+        setInterval(autoPlaySlide, time);
+    };
 
-    //     currentSlide++;
-    //     if (currentSlide >= slide.length) {
-    //         currentSlide = 0;
-    //     }
-    //     nextSlide(slide, currentSlide, 'item-active');
-
-    // };
-
-    // const startSlide = (time = 3000) => {
-    //     interval = setInterval(autoPlaySlide, time);
-    // };
-
-    // // const stopSlide = () => {
-    // //     clearInterval(interval);
-    // // };
-
-    // //     slider.addEventListener('click', event => {
-    // //         event.preventDefault();
-
-    // //         const target = event.target;
-
-    // //         if (!target.matches('.portfolio-btn, .dot')) {
-    // //             return;
-    // //         }
-
-    // //         prevSlide(slide, currentSlide, 'portfolio-item-active');
-    // //         prevSlide(dot, currentSlide, 'dot-active');
-
-    // //         if (target.matches('#arrow-right')) {
-    // //             currentSlide++;
-    // //         } else if (target.matches('#arrow-left')) {
-    // //             currentSlide--;
-    // //         } else if (target.matches('.dot')) {
-    // //             dot.forEach((elem, index) => {
-    // //                 if (elem === target) {
-    // //                     currentSlide = index;
-    // //                 }
-    // //             });
-    // //         }
-    // //         if (currentSlide >= slide.length) {
-    // //             currentSlide = 0;
-    // //         }
-
-    // //         if (currentSlide < 0) {
-    // //             currentSlide = slide.length - 1;
-    // //         }
-    // //         nextSlide(slide, currentSlide, 'portfolio-item-active');
-    // //         nextSlide(dot, currentSlide, 'dot-active');
-    // //     });
-
-    // //     slider.addEventListener('mouseover', event => {
-    // //         if (event.target.matches('.portfolio-btn') ||
-    // //             event.target.matches('.dot')) {
-    // //             stopSlide();
-    // //         }
-    // //     });
-
-    // //     slider.addEventListener('mouseout', event => {
-    // //         if (event.target.matches('.portfolio-btn') ||
-    // //             event.target.matches('.dot')) {
-    // //             startSlide();
-    // //         }
-    // //     });
-
-    // startSlide(1500);
+    startSlide(3000);
 };
 
 export default slider;

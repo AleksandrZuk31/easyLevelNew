@@ -2,26 +2,46 @@ const togglePopup = () => {
     const popup = document.querySelector('.modal-callback'),
         popupBase = document.querySelector('.modal-overlay'),
         popupClose = document.querySelector('.modal-close'),
+        popupBtnHeader = document.querySelector('.callback_btn'),
+        popupInSlider = document.querySelectorAll('.absolute'),
         popupBtn = document.querySelector('.button-services');
 
-    popupBtn.addEventListener('click', () => {
+    const popupAppear = () => {
+        event.preventDefault();
         popup.style.display = 'block';
         popupBase.style.display = 'block';
-    });
+    };
 
-    popupClose.addEventListener('click', () => {
+    const popupHide = () => {
+        event.preventDefault();
         popup.style.display = 'none';
         popupBase.style.display = 'none';
+    };
+
+    popupBtn.addEventListener('click', () => {
+        popupAppear();
+    });
+
+    popupBtnHeader.addEventListener('click', () => {
+        popupAppear();
+    });
+
+    for (const item of popupInSlider) {
+        item.addEventListener('click', () => {
+            popupAppear();
+        });
+    }
+
+    popupClose.addEventListener('click', () => {
+        popupHide();
     });
 
     popupBase.addEventListener('click', () => {
-        popup.style.display = 'none';
-        popupBase.style.display = 'none';
+        popupHide();
     });
 
     popup.addEventListener('click', () => {
-        popup.style.display = 'none';
-        popupBase.style.display = 'none';
+        popupHide();
     });
 
 };
