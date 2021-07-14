@@ -40,10 +40,6 @@ const togglePopup = () => {
         popupHide();
     });
 
-    popup.addEventListener('click', () => {
-        popupHide();
-    });
-
 };
 
 export default togglePopup;
