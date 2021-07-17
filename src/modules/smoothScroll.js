@@ -1,19 +1,24 @@
 const smoothScroll = () => {
-    const arrowUp = document.querySelector('.up');
+    const arrowUp = document.querySelector('.up'),
+        wrap = document.querySelector('.top-slider');
 
     const sections = [...document.getElementsByTagName('section')];
-    let currentSection = 0;
-    console.log(sections);
+    let currentSection = sections.length - 1;
 
-    window.addEventListener('wheel', function (e) {
+    const chapter = document.getElementsByTagName('section');
 
+    const scrollToSection = (i) => {
+        console.log(i);
+        chapter[i].scrollIntoView({
+            behavior: 'smooth'
+        });
+    };
 
-        if (e.deltaY < 0) {
-            --currentSection;
-            console.log(1);
+    arrowUp.addEventListener('click', (e) => {
+        if (currentSection < (sections.length)) {
+            currentSection--;
         } else {
-            ++currentSection;
-            console.log(2);
+            currentSection++;
         }
 
         if (currentSection < 0) {
@@ -22,57 +27,17 @@ const smoothScroll = () => {
             currentSection = (sections.length - 1);
         }
 
-       // scrollToSection(currentSection);
+        scrollToSection(currentSection);
     });
 
-
-// const rock = document.getElementsByTagName('section');
-// console.log(rock);
-//  function scrollToSection(i) {
-//      console.log(i);
-//         document.getElementsByTagName('sections'[i]).scrollIntoView({
-//             behavior: 'smooth'
-//         });
-
-  //  };
-
+    window.addEventListener('wheel', (e) => {
+        if (e.deltaY < 0) {
+            wrap.scrollIntoView();
+            arrowUp.style.display = 'none';
+        } else {
+            arrowUp.style.display = 'block';
+        }
+    });
 };
-
-    // window.addEventListener('wheel', function (e) {
-    //     e.preventDefault();
-
-    //     if (e.deltaY < 0) {
-    //         --currentSection;
-    //     } else {
-    //         ++currentSection;
-    //     }
-
-    //     if (currentSection < 0) {
-    //         currentSection = 0;
-    //     } else if (currentSection > (sections.length - 1)) {
-    //         currentSection = (sections.length - 1);
-    //     }
-
-    //     scrollToSection(currentSection);
-    // });
-
-    // function scrollToSection(i) {
-    //     document.getElementById(sections[i].id).scrollIntoView({
-    //         behavior: 'smooth'
-    //     });
-
-    // }
-
-    // arrowUp.addEventListener('click', () => {
-    //     console.log(1);
-    //     document.body.scrollBy(0, 50);
-    // });
-
-
-    // console.log(arrowUp);
-
-
-
-
 
 export default smoothScroll;
