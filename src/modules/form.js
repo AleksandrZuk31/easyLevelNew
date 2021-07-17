@@ -37,11 +37,11 @@ const sendForm = () => {
 
     const verifyPopup = () => {
         purifyName.addEventListener('input', () => {
-            purifyName.value = purifyName.value.replace(/[\dA-Za-z?"!'@#^&$_%~+=:;/|\-*<>(){}[\]\\]/g, '').replace(/^\-/, '').replace(/ {1,}/g, ' ').replace(/\-{1,}/g, '-');
+            purifyName.value = purifyName.value.replace(/[\dA-Za-z?"!'@#^&$_%~+=:;/|\-*<>(){}[\]\\]/g, '').replace(/^\-/, '').replace(/ {0,}/g, '').replace(/\-{1,}/g, '-');
         });
 
         purifyPhone.addEventListener('input', () => {
-            purifyPhone.value = purifyPhone.value.replace(/[А-яа-яЁёA-Za-z?"!'@#^&$_,.%~=:;/|\-*<>(){}[\]\\]/g, '').replace(/^\-/, '').replace(/ {1,}/g, ' ').replace(/\-{1,}/g, '-');
+            purifyPhone.value = purifyPhone.value.replace(/[А-яа-яЁёA-Za-z?"!'@#^&$_,.%~=:;/|\-*<>(){}[\]\\]/g, '').replace(/^\-/, '').replace(/ {0,}/g, '').replace(/\-{1,}/g, '-');
         });
     };
 

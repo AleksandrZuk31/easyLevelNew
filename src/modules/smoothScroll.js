@@ -1,41 +1,16 @@
 const smoothScroll = () => {
-    const arrowUp = document.querySelector('.up'),
-        wrap = document.querySelector('.top-slider');
-
-    const sections = [...document.getElementsByTagName('section')];
-    let currentSection = sections.length - 1;
-
-    const chapter = document.getElementsByTagName('section');
-
-    const scrollToSection = (i) => {
-        console.log(i);
-        chapter[i].scrollIntoView({
-            behavior: 'smooth'
-        });
-    };
+    const arrowUp = document.querySelector('.up');
 
     arrowUp.addEventListener('click', (e) => {
-        if (currentSection < (sections.length)) {
-            currentSection--;
-        } else {
-            currentSection++;
-        }
-
-        if (currentSection < 0) {
-            currentSection = 0;
-        } else if (currentSection > (sections.length - 1)) {
-            currentSection = (sections.length - 1);
-        }
-
-        scrollToSection(currentSection);
+        window.scrollTo(0, 600);
+        arrowUp.style.display = 'none';
     });
 
     window.addEventListener('wheel', (e) => {
-        if (e.deltaY < 0) {
-            wrap.scrollIntoView();
-            arrowUp.style.display = 'none';
-        } else {
+        if (e.deltaY > 0) {
             arrowUp.style.display = 'block';
+        } else {
+            arrowUp.style.display = 'none';
         }
     });
 };
