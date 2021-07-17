@@ -7,6 +7,7 @@ import moveSection from './modules/moveSection';
 import smoothScroll from './modules/smoothScroll';
 import getFaq from './modules/blockFaq';
 import sendForm from './modules/form';
+import maskPhone from './modules/maskPhone';
 
 
 //выбор раздела
@@ -23,3 +24,5 @@ smoothScroll();
 getFaq();
 //отправка формы
 sendForm();
+//маска на поле телефона
+maskPhone();

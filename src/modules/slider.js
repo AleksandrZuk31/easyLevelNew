@@ -3,7 +3,7 @@ const mainSlider = () => {
         slideTable = document.querySelectorAll('.table');
 
     let currentSlide = 0;
-
+    slideTable[0].classList.add('active');
     const autoPlaySlide = () => {
         slideTable[currentSlide].classList.remove('active');
         slide[currentSlide].style.display = 'none';

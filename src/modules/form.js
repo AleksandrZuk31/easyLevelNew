@@ -47,7 +47,7 @@ const sendForm = () => {
 
     verifyPopup();
 
-    formPopup.addEventListener('submit', (event) => {
+    formPopup.addEventListener('submit', event => {
         if (purifyName.value.length > 2 && purifyPhone.value.length > 10) {
             event.preventDefault();
 
@@ -73,6 +73,7 @@ const sendForm = () => {
             return;
         }
     });
+
 };
 
 export default sendForm;
