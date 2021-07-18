@@ -10,8 +10,15 @@ const roundSlider = () => {
         infinity,
         widthSlide;
 
+    if (window.innerWidth > 998) {
+        slidesToShow = 3;
+    } else if (window.innerWidth < 692) {
+        slidesToShow = 1;
+    } else {
+        slidesToShow = 2;
+    }
+
     position = 0;
-    slidesToShow = 3;
     widthSlide = Math.floor(100 / slidesToShow);
     infinity = true;
 

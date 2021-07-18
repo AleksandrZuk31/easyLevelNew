@@ -4,7 +4,7 @@ const smoothScroll = () => {
     arrowUp.style.display = 'none';
     arrowUp.addEventListener('click', (e) => {
         const sectionHead = document.querySelector('.header-push');
-        console.log(sectionHead);
+
         sectionHead.scrollIntoView({
             behavior: 'smooth',
             block: 'start',
@@ -13,8 +13,6 @@ const smoothScroll = () => {
     });
 
     window.addEventListener('wheel', () => {
-        console.log(pageYOffset);
-        console.log(document.documentElement.clientHeight);
         if (pageYOffset < 600) {
             arrowUp.style.display = 'none';
         } else {
